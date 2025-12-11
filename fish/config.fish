@@ -50,6 +50,7 @@ abbr cl "clear"
 abbr .. "cd .."
 abbr ta "tmux attach"
 abbr vi "vim"
+abbr phpserver "php -S localhost:8000"
 
 function !!
     eval $history[1]
