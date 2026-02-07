@@ -20,6 +20,7 @@ set relativenumber
 set numberwidth=3
 hi LineNr ctermfg=240 cterm=NONE
 hi CursorLineNr ctermfg=208 cterm=NONE
+
 set scrolloff=5
 set splitbelow
 set splitright
@@ -31,33 +32,29 @@ set undodir=~/.vim/undo
 
 set t_Co=256
 
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-    silent execute '!curl --insecure -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType yml setlocal ts=2 sts=2 sw=2 expandtab
 
-autocmd BufRead,BufNewFile storage.conf,containers.conf,registries.conf set filetype=toml
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-call plug#begin()
+call plug#begin('~/.vim/plugged')
 Plug 'JuliaEditorSupport/julia-vim'
+Plug 'brentyi/isort.vim'
+Plug 'ap/vim-css-color'
 Plug 'tpope/vim-surround'
 Plug 'terryma/vim-smooth-scroll'
-Plug 'ap/vim-css-color'
-Plug 'mattn/emmet-vim'
 Plug 'mhinz/vim-startify'
 Plug 'romainl/vim-cool'
 Plug 'tpope/vim-endwise'
 Plug 'rstacruz/vim-closer'
+Plug 'junegunn/goyo.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'machakann/vim-highlightedyank'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'cespare/vim-toml'
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'ekalinin/Dockerfile.vim'
-Plug 'github/copilot.vim'
 call plug#end()
